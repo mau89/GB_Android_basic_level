@@ -15,6 +15,7 @@
         android:layout_weight="90">
 
         <LinearLayout
+            android:id="@+id/linear_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
