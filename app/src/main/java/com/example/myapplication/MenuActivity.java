@@ -2,41 +2,83 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import static android.provider.Telephony.Mms.Part.TEXT;
+import com.example.myapplication.data.BDCity;
 
 public class MenuActivity extends AppCompatActivity {
+    private static final String ID_CITY = "ID_CITY";
     Button add_location;
-    private final int USERID = 6000;
+    private static final int USERID = 6000;
     private int countID;
+    private BDCity bdCity;
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Parsel parsel = (Parsel) getIntent().getExtras().getSerializable(TEXT);
+    protected void onResume() {
+        super.onResume();
+        bdCity = new BDCity(this);
+        SQLiteDatabase database = bdCity.getReadableDatabase();
         LinearLayout linearLayout = findViewById(R.id.linear_city);
-        if (!parsel.cityName.equals("")) {
-            Button button = new Button(getApplicationContext());
-            button.setText(parsel.cityName);
-            button.setLayoutParams(
-                    new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT)
-            );
-            button.setId(USERID + countID);
-            linearLayout.addView(button);
-            countID++;
-            log("add button город "+parsel.cityName+" Отображать влажность "+ parsel.pressure_wetness+
-                    " Отображать давление "+parsel.pressure_switch+
-                    " Отображать скорость ветра "+ parsel.pressure_speed_wind);
+        linearLayout.removeAllViews();
+        if (database != null) {
+            String[] projection = {
+                    BDCity.KEY_ID,
+                    BDCity.APP_PREFERENCES_cityName,
+                    BDCity.APP_PREFERENCES_pressure_switch,
+                    BDCity.APP_PREFERENCES_pressure_speed_wind,
+                    BDCity.APP_PREFERENCES_pressure_wetness};
+            Cursor cursor = database.query(
+                    BDCity.TABLE_CONTACTS,
+                    projection,            // столбцы
+                    null,                  // столбцы для условия WHERE
+                    null,                  // значения для условия WHERE
+                    null,                  // Don't group the rows
+                    null,                  // Don't filter by row groups
+                    null);
+            while (cursor.moveToNext()) {
 
+                int currentID = cursor.getInt(cursor.getColumnIndex(BDCity.KEY_ID));
+                String APP_PREFERENCES_cityName = cursor.getString(cursor.getColumnIndex(BDCity.APP_PREFERENCES_cityName));
+                int APP_PREFERENCES_pressure_speed_wind = cursor.getInt(cursor.getColumnIndex(BDCity.APP_PREFERENCES_pressure_speed_wind));
+                int APP_PREFERENCES_pressure_switch = cursor.getInt(cursor.getColumnIndex(BDCity.APP_PREFERENCES_pressure_switch));
+                int APP_PREFERENCES_pressure_wetness = cursor.getInt(cursor.getColumnIndex(BDCity.APP_PREFERENCES_pressure_wetness));
+
+                System.out.println(APP_PREFERENCES_cityName);
+                TextView textView = new TextView(getApplicationContext());
+                textView.setText(APP_PREFERENCES_cityName);
+                textView.setLayoutParams(
+                        new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT)
+                );
+                textView.setId(USERID + countID);
+                textView.setTextSize(20f);
+                textView.setTextColor(Color.BLACK);
+                textView.setPadding(10, 10, 10, 10);
+
+                textView.setOnClickListener(v -> {
+                    Intent intent = new Intent();
+                    intent.putExtra(ID_CITY, currentID);
+                    setResult(Activity.RESULT_OK, intent);
+                    log("id " + currentID + "город " + APP_PREFERENCES_cityName + " влажность " + APP_PREFERENCES_pressure_wetness
+                            + " скорость ветра " + APP_PREFERENCES_pressure_speed_wind + " давление " + APP_PREFERENCES_pressure_switch + "");
+                    cursor.close();
+                    bdCity.close();
+                    finish();
+                });
+                linearLayout.addView(textView);
+                countID++;
+            }
         }
     }
 
@@ -45,16 +87,12 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         add_location = findViewById(R.id.add_location);
-        add_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MenuActivity.this, AddingCitiesActivity.class));
-            }
+        add_location.setOnClickListener(v -> {
+//          Intent intent = new Intent(this, AddingCitiesActivity.class);
+            startActivity(new Intent(this, AddingCitiesActivity.class));
         });
-
-
-
     }
+
     private void log(String string) {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
         Log.d("MenuActivity", string);

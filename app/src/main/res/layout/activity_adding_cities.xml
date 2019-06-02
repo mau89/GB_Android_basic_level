@@ -51,7 +51,7 @@
             android:id="@+id/add_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добавить город"
+            android:text="@string/addcity"
             android:layout_gravity="bottom"/>
 
     </LinearLayout>
