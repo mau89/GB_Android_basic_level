@@ -5,5 +5,5 @@
     <string name="pressure_wetness" translatable="false">Display wetness</string>
     <string name="spinner_headline" translatable="false">Select city</string>
     <string name="app_name_weather">Weather</string>
-    <string name="addcity">Add a city</string>
+    <string name="addcity">Save settings</string>
 </resources>

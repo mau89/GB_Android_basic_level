@@ -6,7 +6,7 @@
     <string name="pressure_speed_wind">Отображать скорость ветра</string>
     <string name="pressure_wetness">Отображать влажность</string>
     <string name="spinner_headline">Выберите город</string>
-    <string name="addcity">Добавить город</string>
+    <string name="addcity">Сохранить настройки</string>
     <string name="Wind_speed">4 m/s</string>
     <string name="Humidity">74 %</string>
     <string name="Pressure">1009 hpa</string>
