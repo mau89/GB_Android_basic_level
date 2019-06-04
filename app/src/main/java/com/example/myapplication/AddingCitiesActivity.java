@@ -42,7 +42,6 @@ public class AddingCitiesActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).equals("Выберите город")) {
-
                 } else {
                     log(spinner.getSelectedItem().toString());
                     city1 = spinner.getSelectedItem().toString();
@@ -51,7 +50,6 @@ public class AddingCitiesActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -107,15 +105,11 @@ public class AddingCitiesActivity extends AppCompatActivity {
                     null,                  // Don't filter by row groups
                     null);
             while (cursor.moveToNext()) {
-                int currentID = cursor.getInt(cursor.getColumnIndex(BDCity.KEY_ID));
                 String APP_PREFERENCES_cityName = cursor.getString(cursor.getColumnIndex(BDCity.APP_PREFERENCES_cityName));
                 int APP_PREFERENCES_pressure_speed_wind = cursor.getInt(cursor.getColumnIndex(BDCity.APP_PREFERENCES_pressure_speed_wind));
                 int APP_PREFERENCES_pressure_switch = cursor.getInt(cursor.getColumnIndex(BDCity.APP_PREFERENCES_pressure_switch));
                 int APP_PREFERENCES_pressure_wetness = cursor.getInt(cursor.getColumnIndex(BDCity.APP_PREFERENCES_pressure_wetness));
-
                 spinner.setSelection(Arrays.asList(city).indexOf(APP_PREFERENCES_cityName));
-                //textViewCity = findViewById(R.id.City);
-                //textViewCity.setText(APP_PREFERENCES_cityName);
                 Switch pressure_switch = findViewById(R.id.pressure_switch);
                 Switch pressure_wetness = findViewById(R.id.pressure_wetness);
                 Switch pressure_speed_wind = findViewById(R.id.pressure_speed_wind);

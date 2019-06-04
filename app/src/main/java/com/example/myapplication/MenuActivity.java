@@ -8,16 +8,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -74,13 +71,11 @@ public class MenuActivity extends AppCompatActivity {
             Intent intent = new Intent();
             intent.putExtra(ID_CITY, currentID);
             setResult(Activity.RESULT_OK, intent);
-
             cursor.close();
             bdCity.close();
             finish();
         });
         textView.setOnLongClickListener(v -> {
-            //registerForContextMenu(textView);
             startActivity(new Intent(this, AddingCitiesActivity.class));
             SharedPreferences sharedPreferences = this.getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -103,20 +98,16 @@ public class MenuActivity extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         menu.add(Menu.NONE,IDM_OPEN,Menu.NONE,"Изменить");
-
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         //startActivity(new Intent(this, AddingCitiesActivity.class));
         return super.onContextItemSelected(item);
-        //
-        //return true;
-
     }
 
     public void deleteRow(String value) {
-        bdCity.getWritableDatabase().delete(BDCity.TABLE_CONTACTS ,BDCity.KEY_ID + "=?", new String[]{value});
+        bdCity.getWritableDatabase().delete(BDCity.TABLE_CONTACTS, BDCity.KEY_ID + "=?", new String[]{value});
         bdCity.close();
     }
 

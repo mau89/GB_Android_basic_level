@@ -26,12 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private BDCity bdCity;
     public String dataCity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         menu = findViewById(R.id.menu);
         menu.setOnClickListener(v -> {
             Intent intent = new Intent(this, MenuActivity.class);
