@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">MyApplication</string>
     <string name="app_name_weather">Погода</string>
-    <!--Layout activity_adding_cities.xml-->
+    <!--Layout fragment_adding_cities.xml-->
     <string name="pressure_switch">Отображать давление</string>
     <string name="pressure_speed_wind">Отображать скорость ветра</string>
     <string name="pressure_wetness">Отображать влажность</string>

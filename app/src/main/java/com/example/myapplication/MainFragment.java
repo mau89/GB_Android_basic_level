@@ -1,37 +1,54 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+
+import com.example.myapplication.data.BDCity;
+
+public class MainFragment extends Fragment {
+    private static final int REQUEST_CODE = 200;
+    ImageButton menu;
+    ImageButton info;
+    private BDCity bdCity;
+    public String dataCity;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        if (savedInstanceState==null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MainFragment())
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        menu = view.findViewById(R.id.menu);
+        menu.setOnClickListener(v -> {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, new MenuFragment())
+                    .addToBackStack(MainFragment.class.getName())
                     .commit();
-        }
-//        menu = findViewById(R.id.menu);
-//        menu.setOnClickListener(v -> {
-//            Intent intent = new Intent(this, MenuFragment.class);
-//            startActivityForResult(intent, REQUEST_CODE);
-//        });
-//        info = findViewById(R.id.info);
-//        info.setOnClickListener(v -> System.out.println("info"));
-//        log("onCreate");
+        });
+        info = view.findViewById(R.id.info);
+        info.setOnClickListener(v -> System.out.println("info"));
+        log("onCreate");
 //        if (savedInstanceState == null) {
 //            SharedPreferences sharedPreferences = this.getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE);
 //            if (sharedPreferences != null) {
 //                loadCity(sharedPreferences.getString("APP_PREFERENCES_CITY", ""));
 //            }
 //        }
+        return view;
     }
 
-//    @Override
+    //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
 //        if (requestCode != REQUEST_CODE) {
@@ -132,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
 //        log("onDestroy");
 //    }
 //
-//    private void log(String string) {
-//        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
-//        Log.d("MainActivity", string);
-//    }
+    private void log(String string) {
+        //Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
+        Log.d("MainActivity", string);
+    }
 }
 
