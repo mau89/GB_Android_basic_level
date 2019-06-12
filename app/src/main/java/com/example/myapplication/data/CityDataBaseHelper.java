@@ -6,10 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class BDCity extends SQLiteOpenHelper {
+public class CityDataBaseHelper extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = BDCity.class.getSimpleName();
-    public static final String NAME = "City";
+    public static final String LOG_TAG = CityDataBaseHelper.class.getSimpleName();
+    public static final String NAME = "HistoryCity";
     public static final int VERSION = 1;
     public static final String TABLE_CONTACTS = "contacts";
     public static final String KEY_ID = "_id";
@@ -18,7 +18,7 @@ public class BDCity extends SQLiteOpenHelper {
     public static final String APP_PREFERENCES_pressure_speed_wind = "APP_PREFERENCES_pressure_speed_wind";
     public static final String APP_PREFERENCES_pressure_wetness = "APP_PREFERENCES_pressure_wetness";
 
-    public BDCity(@Nullable Context context) {
+    public CityDataBaseHelper(@Nullable Context context) {
         super(context, NAME, null, VERSION);
     }
 

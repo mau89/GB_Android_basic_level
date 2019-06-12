@@ -141,122 +141,123 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="20"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/linerHistory">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="3">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="3">-->
 
-                <TextView
-                    android:id="@+id/textView24"
-                    style="@style/TextViewStyle"
-                    android:text="SAT" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView24"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="SAT" />-->
 
-                <ImageView
-                    android:id="@+id/textView25"
-                    style="@style/ImageView"
-                    android:src="@drawable/sun" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/textView25"-->
+                    <!--style="@style/ImageView"-->
+                    <!--android:src="@drawable/sun" />-->
 
-                <TextView
-                    android:id="@+id/textView26"
-                    style="@style/TextViewStyle"
-                    android:text="30 \u2103" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/textView26"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="30 \u2103" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="3">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="3">-->
 
-                <TextView
-                    android:id="@+id/textView27"
-                    style="@style/TextViewStyle"
-                    android:text="SUN" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView27"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="SUN" />-->
 
-                <ImageView
-                    android:id="@+id/textView28"
-                    style="@style/ImageView"
-                    android:src="@drawable/sun" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/textView28"-->
+                    <!--style="@style/ImageView"-->
+                    <!--android:src="@drawable/sun" />-->
 
-                <TextView
-                    android:id="@+id/textView29"
-                    style="@style/TextViewStyle"
-                    android:text="30 \u2103" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/textView29"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="30 \u2103" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="3">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="3">-->
 
-                <TextView
-                    android:id="@+id/textView8"
-                    style="@style/TextViewStyle"
-                    android:text="MON" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView8"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="MON" />-->
 
-                <ImageView
-                    android:id="@+id/textView16"
-                    style="@style/ImageView"
-                    android:src="@drawable/sun" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/textView16"-->
+                    <!--style="@style/ImageView"-->
+                    <!--android:src="@drawable/sun" />-->
 
-                <TextView
-                    android:id="@+id/textView30"
-                    style="@style/TextViewStyle"
-                    android:text="29 \u2103" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/textView30"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="29 \u2103" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="3">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="3">-->
 
-                <TextView
-                    android:id="@+id/textView18"
-                    style="@style/TextViewStyle"
-                    android:text="TUE" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView18"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="TUE" />-->
 
-                <ImageView
-                    android:id="@+id/textView19"
-                    style="@style/ImageView"
-                    android:src="@drawable/sun" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/textView19"-->
+                    <!--style="@style/ImageView"-->
+                    <!--android:src="@drawable/sun" />-->
 
-                <TextView
-                    android:id="@+id/textView20"
-                    style="@style/TextViewStyle"
-                    android:text="29 \u2103" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/textView20"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="29 \u2103" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:weightSum="3">
+            <!--<LinearLayout-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="3">-->
 
-                <TextView
-                    android:id="@+id/textView21"
-                    style="@style/TextViewStyle"
-                    android:text="WED" />
+                <!--<TextView-->
+                    <!--android:id="@+id/textView21"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="WED" />-->
 
-                <ImageView
-                    android:id="@+id/textView22"
-                    style="@style/ImageView"
-                    android:src="@drawable/sun" />
+                <!--<ImageView-->
+                    <!--android:id="@+id/textView22"-->
+                    <!--style="@style/ImageView"-->
+                    <!--android:src="@drawable/sun" />-->
 
-                <TextView
-                    android:id="@+id/textView23"
-                    style="@style/TextViewStyle"
-                    android:text="30 \u2103" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/textView23"-->
+                    <!--style="@style/TextViewStyle"-->
+                    <!--android:text="30 \u2103" />-->
+            <!--</LinearLayout>-->
 
 
         </LinearLayout>

@@ -9,7 +9,7 @@
     </style>
 
     <style name="ImageView">
-        <item name="android:layout_width">50sp</item>
+        <item name="android:layout_width">83sp</item>
         <item name="android:layout_height">50sp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_weight">1</item>
