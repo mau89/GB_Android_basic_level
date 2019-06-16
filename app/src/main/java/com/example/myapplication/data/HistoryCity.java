@@ -1,6 +1,8 @@
 package com.example.myapplication.data;
 
 
+import java.util.Objects;
+
 public final class HistoryCity {
     private String stringDay;
     private int drawableImageViewDay;
@@ -31,5 +33,20 @@ public final class HistoryCity {
                 ", drawableImageViewDay='" + drawableImageViewDay + '\'' +
                 ", stringTextViewTemperatureDay='" + stringTextViewTemperatureDay + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HistoryCity that = (HistoryCity) o;
+        return drawableImageViewDay == that.drawableImageViewDay &&
+                Objects.equals(stringDay, that.stringDay) &&
+                Objects.equals(stringTextViewTemperatureDay, that.stringTextViewTemperatureDay);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(stringDay, drawableImageViewDay, stringTextViewTemperatureDay);
     }
 }

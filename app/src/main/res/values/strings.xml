@@ -10,4 +10,5 @@
     <string name="Wind_speed">4 m/s</string>
     <string name="Humidity">74 %</string>
     <string name="Pressure">1009 hpa</string>
+    <string name="TextUpdate">LAST UPDATE SAT 27 MAY 2019</string>
 </resources>

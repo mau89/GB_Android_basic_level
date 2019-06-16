@@ -3,11 +3,9 @@ package com.example.myapplication;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,58 +14,25 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.myapplication.data.HistoryCity;
 import com.example.myapplication.data.CityDataBaseHelper;
+import com.example.myapplication.data.HistoryCity;
 import com.example.myapplication.utils.Preferences;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import timber.log.Timber;
 
 public class MainFragment extends Fragment {
-    ImageButton menu;
-    ImageButton info;
     private CityDataBaseHelper cityDataBaseHelper;
     private SQLiteDatabase database;
-    private RecyclerView recyclerView;
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        cityDataBaseHelper = ((App) getActivity().getApplication()).getCityDataBaseHelper();
-        database = cityDataBaseHelper.getReadableDatabase();
-        menu = view.findViewById(R.id.menu);
-        menu.setOnClickListener(v ->
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.container, new MenuFragment())
-                        .addToBackStack(MainFragment.class.getName())
-                        .commit());
-        info = view.findViewById(R.id.info);
-        info.setOnClickListener(v -> System.out.println("info"));
-        String city = ((App) Objects.requireNonNull(getActivity()).getApplication()).getPreferences().getString(Preferences.Key.CITY);
-        log(city);
-        if (!"".equals(city)) {
-            loadCity(city, view);
-        }
-        LinearLayout linearLayout1 = view.findViewById(R.id.linerHistory);
-
-        LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
-
-        View view1 = layoutInflater.inflate(R.layout.layout_weather_history, null, false);
-        recyclerView = view1.findViewById(R.id.recycler);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
-        recyclerView.setAdapter(new HistoryDayAdapter(generateCity()));
-        linearLayout1.addView(view1);
-        return view;
-    }
-
 
     private static List<HistoryCity> generateCity() {
         List<HistoryCity> historyCityList = new ArrayList<>();
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 15; i++) {
 
-            historyCityList.add(new HistoryCity(String.valueOf(12 + i), RandomList(), ((int) (Math.random() * 10 + i)) + " \u2103"));
+            historyCityList.add(new HistoryCity(String.valueOf(12 + i), RandomList(),
+                    ((int) (Math.random() * 10 + i)) + " \u2103"));
         }
         return historyCityList;
     }
@@ -84,6 +49,37 @@ public class MainFragment extends Fragment {
         } else {
             return R.drawable.sun;
         }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        cityDataBaseHelper = ((App) getActivity().getApplication()).getCityDataBaseHelper();
+        database = cityDataBaseHelper.getReadableDatabase();
+
+        view.findViewById(R.id.menu).setOnClickListener(v ->
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.container, new MenuFragment())
+                        .addToBackStack(MainFragment.class.getName())
+                        .commit());
+        view.findViewById(R.id.info).setOnClickListener(v -> System.out.println("info"));
+        String city = ((App) getActivity().getApplication()).getPreferences().getString(Preferences.Key.CITY);
+        Timber.d(city);
+        if (!city.isEmpty()) {
+            loadCity(city, view);
+        }
+        setUpRecyclerView(view.findViewById(R.id.linerHistory));
+        return view;
+    }
+
+    private void setUpRecyclerView(LinearLayout historyLayout) {
+        View historyView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.layout_weather_history, historyLayout, false);
+        RecyclerView recyclerView = historyView.findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
+        recyclerView.setAdapter(new HistoryDayAdapter(generateCity()));
+        historyLayout.addView(historyView);
     }
 
     private void loadCity(String data, View view) {
@@ -128,10 +124,6 @@ public class MainFragment extends Fragment {
         super.onDestroyView();
         database.close();
         cityDataBaseHelper.close();
-    }
-
-    private void log(String string) {
-        Log.d("MainFragment", string);
     }
 }
 

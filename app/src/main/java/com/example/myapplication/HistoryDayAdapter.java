@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.data.HistoryCity;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class HistoryDayAdapter extends RecyclerView.Adapter<ViewHolder> {
 
-    List<HistoryCity> historyCityList;
+    private List<HistoryCity> historyCityList;
 
     public HistoryDayAdapter(List<HistoryCity> historyCityList) {
         this.historyCityList = historyCityList;
@@ -22,7 +21,7 @@ public class HistoryDayAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(
-                LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_forecast_for_day, parent, false)
+                LayoutInflater.from(parent.getContext()).inflate(R.layout.item_forecast_for_day, parent, false)
         );
     }
 
@@ -32,8 +31,6 @@ public class HistoryDayAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.textViewDay.setText(historyCity.getStringDay());
         holder.imageViewDay.setImageResource(historyCity.getDrawableImageViewDay());
         holder.textViewTemperatureDay.setText(historyCity.getStringTextViewTemperatureDay());
-
-
     }
 
     @Override

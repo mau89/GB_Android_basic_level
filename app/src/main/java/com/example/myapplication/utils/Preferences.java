@@ -2,7 +2,6 @@ package com.example.myapplication.utils;
 
 import android.content.SharedPreferences;
 
-
 public class Preferences {
     private final SharedPreferences preferences;
 

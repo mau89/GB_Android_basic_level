@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import com.example.myapplication.data.CityDataBaseHelper;
 import com.example.myapplication.utils.Preferences;
 
+import timber.log.Timber;
+
 public class App extends Application {
     private static int screenWidth;
     private Preferences preferences;
@@ -19,7 +21,10 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         preferences = new Preferences(PreferenceManager.getDefaultSharedPreferences(this));
-        cityDataBaseHelper = cityDataBaseHelper = new CityDataBaseHelper(this);
+        cityDataBaseHelper = new CityDataBaseHelper(this);
+        if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+        }
     }
 
     public Preferences getPreferences() {

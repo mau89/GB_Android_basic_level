@@ -8,9 +8,8 @@ import androidx.annotation.Nullable;
 
 public class CityDataBaseHelper extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = CityDataBaseHelper.class.getSimpleName();
-    public static final String NAME = "HistoryCity";
-    public static final int VERSION = 1;
+    private static final String NAME = "HistoryCity";
+    private static final int VERSION = 1;
     public static final String TABLE_CONTACTS = "contacts";
     public static final String KEY_ID = "_id";
     public static final String APP_PREFERENCES_cityName = "cityName";
